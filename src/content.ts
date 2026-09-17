@@ -1,7 +1,7 @@
-export const loaders = import.meta.glob('../content/*.md', {
-  query: '?raw',
-  import: 'default',
-}) as Record<string, () => Promise<string>>
+export const loaders = import.meta.glob(
+  ['../content/*.md', '!../content/errors.md'],
+  { query: '?raw', import: 'default' },
+) as Record<string, () => Promise<string>>
 
 export function loadMarkdown(file: string): Promise<string> {
   const key = `../content/${file}`
