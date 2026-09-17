@@ -1,0 +1,223 @@
+/* ============================================================
+   英语名录 · 基础层：设计 token / 排版 / 正文内容组件
+   墨蓝（对照索引）· 暖纸 · 衬线标题 + 无衬线正文
+   变量名沿用 --green，便于和雅思白皮书共用骨架 CSS。
+   ============================================================ */
+:root{
+  --paper:#FAF8F1;
+  --paper-raise:#FFFFFF;
+  --panel:#F1EFE4;
+  --panel-2:#ECE9DC;
+  --ink:#1B1E16;
+  --ink-soft:#55594C;
+  --muted:#847F6F;
+  --line:#E4E0D2;
+  --line-strong:#CEC8B4;
+  --green:#2C3A6E;
+  --green-deep:#1E2A52;
+  --green-soft:#E4E8F3;
+  --green-tint:#F0F2F8;
+  --gold:#9A3412;
+  --gold-soft:#F3E4D8;
+  --ok:#2C3A6E;
+  --warn:#9A3412;
+
+  --serif:Georgia,'Times New Roman','Songti SC','Noto Serif SC','SimSun',serif;
+  --sans:-apple-system,'SF Pro Text','PingFang SC','Noto Sans SC','Microsoft YaHei',system-ui,sans-serif;
+  --mono:'SF Mono','JetBrains Mono',Menlo,Consolas,monospace;
+  --measure:70ch;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+html,body{margin:0;}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:16.5px;line-height:1.8;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  font-feature-settings:"kern";
+}
+::selection{background:var(--green-soft);color:var(--green-deep);}
+
+:focus-visible{outline:2px solid var(--green);outline-offset:2px;border-radius:3px;}
+
+/* ── 正文排版（作用于章节 .page 与首页 .home 内） ─────────────────── */
+.page, .home{color:var(--ink);}
+.page p, .home p{margin:0 0 18px;}
+.page p:last-child, .home p:last-child{margin-bottom:0;}
+
+h2{
+  font-family:var(--serif);font-weight:700;letter-spacing:-.005em;
+  font-size:clamp(21px,3vw,26px);line-height:1.28;margin:44px 0 4px;
+  text-wrap:balance;color:var(--ink);
+}
+h2 .h2-en{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--green);
+  letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:6px;}
+h3{
+  font-family:var(--serif);font-weight:700;font-size:18.5px;line-height:1.4;
+  margin:30px 0 6px;color:var(--ink);letter-spacing:-.003em;
+}
+.page strong, .home strong{font-weight:640;}
+.kw{color:var(--green-deep);font-weight:640;
+  background:linear-gradient(transparent 62%,var(--green-soft) 62%);padding:0 1px;}
+
+.page a, .home a{
+  color:var(--green);text-decoration:none;
+  border-bottom:1px solid #c5c9dc;transition:border-color .12s;
+}
+.page a:hover, .home a:hover{border-bottom-color:var(--green);}
+
+code{
+  font-family:var(--mono);font-size:.86em;
+  background:var(--panel-2);border:1px solid var(--line);border-radius:4px;
+  padding:1px 5px;color:var(--green-deep);
+}
+
+/* 列表 */
+ul.tight, ol.tight{margin:8px 0 20px;padding-left:22px;}
+ul.tight li, ol.tight li{margin:6px 0;color:var(--ink);}
+ul.tight li b, ol.tight li b{font-weight:640;}
+ul.check{list-style:none;margin:8px 0 20px;padding:0;}
+ul.check li{position:relative;padding-left:28px;margin:9px 0;}
+ul.check li::before{content:"✓";position:absolute;left:2px;top:0;color:var(--green);
+  font-weight:700;font-family:var(--mono);}
+
+/* ── 表格：像一张成绩册 ────────────────────────────────────────── */
+.table-x{overflow-x:auto;margin:14px 0;border:1px solid var(--line-strong);
+  border-radius:6px;background:var(--paper-raise);}
+table.ledger{border-collapse:collapse;width:100%;font-size:14.5px;min-width:440px;}
+table.ledger th, table.ledger td{
+  text-align:left;padding:11px 15px;border-bottom:1px solid var(--line);vertical-align:top;
+}
+table.ledger thead th{
+  background:var(--panel);font-family:var(--mono);font-size:11px;letter-spacing:.05em;
+  text-transform:uppercase;color:var(--ink-soft);font-weight:600;white-space:nowrap;
+}
+table.ledger tbody tr:last-child td{border-bottom:0;}
+table.ledger td.num, table.ledger th.num{
+  font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap;
+}
+table.ledger td.ex{font-family:var(--mono);font-size:12px;color:var(--muted);white-space:nowrap;}
+.score{font-family:var(--mono);font-weight:600;font-variant-numeric:tabular-nums;}
+.score.hi{color:var(--green);}
+tr.total td{background:var(--green-soft);font-weight:640;}
+tr.total .score{color:var(--green-deep);}
+
+/* ── note 批注块（学院绿，替代之前的红笔） ───────────────────────── */
+.note{
+  background:var(--green-tint);border:1px solid #D7E1D3;border-left:3px solid var(--green);
+  border-radius:0 6px 6px 0;padding:16px 20px;margin:24px 0;font-size:15px;line-height:1.7;
+}
+.note .note-tag{
+  display:block;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--green);margin-bottom:6px;
+}
+.note b{color:var(--green-deep);font-weight:660;}
+.note.gold{background:var(--gold-soft);border-color:#E4D4A0;border-left-color:var(--gold);}
+.note.gold .note-tag{color:var(--gold);}
+.note.gold b{color:#7a5f1e;}
+
+/* ── 卡片网格 ──────────────────────────────────────────────────── */
+.cardgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0;}
+.cardgrid.three{grid-template-columns:1fr 1fr 1fr;}
+@media (max-width:640px){.cardgrid,.cardgrid.three{grid-template-columns:1fr;}}
+.card{background:var(--paper-raise);border:1px solid var(--line);border-radius:7px;padding:18px 20px;}
+.card h4{margin:0 0 6px;font-family:var(--serif);font-size:15.5px;font-weight:700;}
+.card p{margin:0;font-size:14px;color:var(--ink-soft);line-height:1.6;}
+.card .card-k{font-family:var(--mono);font-size:11px;color:var(--green);letter-spacing:.06em;
+  text-transform:uppercase;font-weight:600;display:block;margin-bottom:5px;}
+
+/* ── 九分制标尺 ────────────────────────────────────────────────── */
+.ruler-shell{margin:22px 0;}
+.ruler-cap{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--muted);
+  text-transform:uppercase;margin-bottom:10px;}
+.ruler{display:grid;grid-template-columns:repeat(10,1fr);border:1px solid var(--line-strong);
+  border-radius:5px;overflow:hidden;background:var(--paper-raise);}
+.ruler .tick{position:relative;padding:13px 4px 11px;text-align:center;
+  border-right:1px solid var(--line);font-family:var(--mono);}
+.ruler .tick:last-child{border-right:0;}
+.ruler .tick .n{font-size:18px;font-weight:600;color:var(--ink);}
+.ruler .tick .lab{display:block;font-size:9px;line-height:1.3;color:var(--muted);margin-top:5px;height:22px;}
+.ruler .tick.zone{background:var(--green-soft);}
+.ruler .tick.target .n{color:var(--green);}
+.ruler .target-mark{position:absolute;inset:2px;border:2.5px solid var(--green);border-radius:50%;
+  transform:rotate(-4deg) scale(1.04);pointer-events:none;}
+.ruler-note{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:11px;
+  display:flex;flex-wrap:wrap;gap:5px 18px;}
+.ruler-note b{color:var(--green);}
+@media (max-width:560px){.ruler{grid-template-columns:repeat(10,minmax(44px,1fr));overflow-x:auto;}}
+
+/* ── 技能规格卡（听说读写页用） ─────────────────────────────────── */
+.spec{margin:16px 0;}
+.spec-row{display:grid;grid-template-columns:92px 1fr;gap:4px 16px;padding:12px 0;
+  border-top:1px solid var(--line);align-items:start;}
+.spec-row:first-child{border-top:0;}
+.spec-k{font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--green);
+  text-transform:uppercase;padding-top:3px;font-weight:600;}
+.spec-v{font-size:15px;color:var(--ink);line-height:1.65;}
+.spec-v.trap{color:var(--ink-soft);}
+.spec-v.trap b{color:var(--warn);font-weight:640;}
+@media (max-width:560px){.spec-row{grid-template-columns:1fr;gap:3px;}}
+
+/* ── 同义替换链 callout ───────────────────────────────────────── */
+.chain{border:1.5px dashed var(--green);border-radius:8px;background:var(--green-tint);
+  padding:20px 22px;margin:26px 0;}
+.chain .ct{font-family:var(--serif);font-weight:700;font-size:16px;margin:0 0 8px;color:var(--green-deep);}
+.chain p{margin:0;font-size:14.5px;color:var(--ink);line-height:1.65;}
+.chain .flow{font-family:var(--mono);font-size:13px;color:var(--green-deep);margin-top:12px;
+  background:var(--paper-raise);border:1px solid #D7E1D3;border-radius:5px;padding:9px 12px;}
+
+/* ── 步骤/闭环 ─────────────────────────────────────────────────── */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:16px 0;}
+@media (max-width:640px){.steps{grid-template-columns:1fr;}}
+.step{background:var(--paper-raise);border:1px solid var(--line);border-radius:7px;padding:18px;}
+.step .step-n{font-family:var(--mono);font-size:11px;color:var(--green);font-weight:700;letter-spacing:.08em;}
+.step h4{margin:6px 0 6px;font-family:var(--serif);font-size:16px;font-weight:700;}
+.step p{margin:0;font-size:13.5px;color:var(--ink-soft);line-height:1.6;}
+
+/* 键帽 */
+kbd{font-family:var(--mono);font-size:11px;background:var(--paper-raise);
+  border:1px solid var(--line-strong);border-bottom-width:2px;border-radius:4px;
+  padding:1px 6px;color:var(--ink-soft);}
+
+.page-loading{padding:80px 32px;text-align:center;color:var(--muted);font-family:var(--mono);font-size:14px;}
+
+/* ── Markdown 正文（本地指南原文） ─────────────────────────────── */
+.md-body{margin-top:8px;}
+.md-body > *:first-child{margin-top:0;}
+.md-body h1{
+  font-family:var(--serif);font-size:clamp(22px,3vw,28px);line-height:1.25;
+  margin:36px 0 8px;
+}
+.md-body h2{margin-top:36px;scroll-margin-top:16px;}
+.md-body h3{margin-top:26px;scroll-margin-top:16px;}
+.md-body hr{border:0;border-top:1px solid var(--line);margin:28px 0;}
+.md-body blockquote{
+  margin:18px 0;padding:12px 16px 12px 18px;
+  border-left:3px solid var(--green);background:var(--green-tint);
+  color:var(--ink-soft);
+}
+.md-body blockquote p{margin:0 0 8px;}
+.md-body blockquote p:last-child{margin:0;}
+.md-body ul, .md-body ol{margin:8px 0 20px;padding-left:22px;}
+.md-body li{margin:6px 0;}
+.md-body pre{
+  background:var(--panel-2);border:1px solid var(--line);border-radius:6px;
+  padding:14px 16px;overflow-x:auto;font-family:var(--mono);font-size:13px;
+  line-height:1.55;margin:14px 0 20px;
+}
+.md-body pre code{background:none;border:0;padding:0;font-size:inherit;color:var(--ink);}
+.md-body table{
+  border-collapse:collapse;width:100%;font-size:14.5px;margin:14px 0 20px;
+  background:var(--paper-raise);
+}
+.md-body th, .md-body td{
+  text-align:left;padding:10px 14px;border:1px solid var(--line);vertical-align:top;
+}
+.md-body thead th{
+  background:var(--panel);font-family:var(--mono);font-size:11px;letter-spacing:.04em;
+  text-transform:uppercase;color:var(--ink-soft);font-weight:600;
+}
+.md-body{overflow-x:auto;}
+.md-body img{max-width:100%;}

@@ -1,0 +1,8 @@
+services:
+  web:
+    build: .
+    image: english-catalog:latest
+    container_name: english-catalog
+    restart: always
+    ports:
+      - "127.0.0.1:5193:80"

@@ -1,0 +1,21 @@
+node_modules
+dist
+content/errors.md
+dist-ssr
+*.local
+.DS_Store
+.env
+.env.*
+!.env.example
+.vite
+*.log
+*.tsbuildinfo
+
+# Playwright MCP 浏览器会话产物（调试用，不进仓库）
+.playwright-mcp/
+
+# 部署脚本不进公开仓库（只放服务器上）
+deploy.sh
+
+# pnpm 10+ 本地放行 esbuild 构建脚本用；仅本地，勿进仓库（Docker 用 pnpm 9 自动构建，不需要）
+pnpm-workspace.yaml
