@@ -19,3 +19,7 @@ deploy.sh
 
 # pnpm 10+ 本地放行 esbuild 构建脚本用；仅本地，勿进仓库（Docker 用 pnpm 9 自动构建，不需要）
 pnpm-workspace.yaml
+
+# 本地私有：工作约定、未上线素材（错题本见上方 content/errors.md）
+CLAUDE.local.md
+private/

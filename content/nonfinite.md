@@ -199,6 +199,34 @@ be worth, feel like
 > ✅ I look forward to **meeting** you.
 > ❌ I look forward to **see** you.
 
+**名词 + to + doing**:to 跟着名词走,是介词,和 the answer to the question 同一个结构。
+
+| 搭配 | 例句 |
+|------|------|
+| the key to doing | That's the key **to keeping** the process on track. |
+| the solution to doing | There's no simple solution **to fixing** it. |
+| an approach to doing | a new approach **to teaching** grammar |
+| commitment to doing | our commitment **to improving** quality |
+| when it comes to doing | When it comes **to cooking**, he's the expert. |
+| in addition to doing | In addition **to writing**, she edits. |
+
+**判断方法**:把 to 后面换成普通名词。
+
+- the key **to success** ✅ → to 是介词,接动词用 doing
+- I want **to success** ❌ → to 是不定式符号,用原形(I want **to succeed**)
+
+⚠️ 这个测试只能证明"to 可以是介词",不能证明"只能接 doing"。少数名词两种都成立,意思不同:
+
+> the way **to success**(通往成功的路,介词)
+> the way **to do** it(做这件事的方法,不定式;也可说 the way **of doing** it)
+
+ability / decision / chance / plan / attempt 这类名词后面是不定式:the ability **to speak**、a chance **to win**,不说 ❌ the ability to speaking。
+
+⚠️ **be used to 有两个**:
+
+> I'm used **to working** late.(习惯于,to 是介词)
+> This tool is used **to cut** metal.(被用来做,use 的被动 + 不定式)
+
 ### 3️⃣ 动名词作表语
 
 > My hobby is **reading**.
